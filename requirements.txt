@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pyrogram
+vk_api
+requests
+openpyxl
