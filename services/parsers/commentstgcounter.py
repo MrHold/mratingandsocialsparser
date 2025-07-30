@@ -20,7 +20,7 @@ async def tg_comments_counter(channel_username, start_dt, end_dt, app):
     k = 0
     async for message in app.get_chat_history(channel_username):
         if k >= 10:
-            return {"result": "error", "message": "Discussion group not found."}
+            return {}
         k += 1
         curr_grouped_id = getattr(message, 'media_group_id', None)
         if curr_grouped_id is not None:
@@ -34,10 +34,9 @@ async def tg_comments_counter(channel_username, start_dt, end_dt, app):
         except MsgIdInvalid:
             continue
     else:
-        return {"result": "error", "message": "Discussion group not found."}
+        return {}
     comms = 0 # кол-во комментариев
     print(f"Working in discussion_group {discussion_group_name}, id: {discussion_group}")
-    return
     async for message in app.get_chat_history(chat_id=discussion_group, offset_date=end_dt):
         if message:
             if getattr(message, 'forward_from_chat', None) and message.forward_from_chat.id == channel_id:  #or "automatic_forward": true check

@@ -70,8 +70,8 @@ async def collect_uni_stats(
         uni_rutube = uni_info["rutube"]
         rutube_stats_dict = (
             rutube_posts_and_views_parser(
-                datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59),
-                uni_rutube,
+                datetime(start_date.year, start_date.month, start_date.day, 23, 59, 59),
+                uni_rutube
             )
             if uni_rutube and "rutube" in socials
             else {}
@@ -91,11 +91,11 @@ async def collect_uni_stats(
                     if uni_tg and "tg" in socials
                     else (0, 0, 0, 0)
                 )
-                comments_tg = (
-                    await tg_comments_counter(uni_tg, start_dt, end_dt, app)
-                    if uni_tg and "tg" in socials
-                    else 0
-                )
+                comments_tg = 0 #(
+                    # await tg_comments_counter(uni_tg, start_dt, end_dt, app)
+                    # if uni_tg and "tg" in socials
+                    # else 0
+                # )
                 (
                     mrate_cons,
                     mrate_socials,
