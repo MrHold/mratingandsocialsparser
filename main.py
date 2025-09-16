@@ -66,6 +66,7 @@ async def analyze_endpoint(data: AnalyzeRequest):
 @router.post("/export")
 async def export_endpoint(data: AnalyzeRequest):
     res = await analyze_endpoint(data)
+    print(res)
     wb = Workbook()
     ws = wb.active
     headers = [

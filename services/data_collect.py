@@ -101,6 +101,8 @@ async def collect_uni_stats(
                 if uni_tg and "tg" in socials
                 else 0
             )
+            if not comments_tg:
+                comments_tg = 0
             (
                 mrate_cons,
                 mrate_socials,
